@@ -2,6 +2,11 @@ package cl.eme.restapidesafio
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import cl.eme.restapidesafio.databinding.ActivityMainBinding
+import timber.log.Timber
+
 /*
 [] 1. Ir a la web de jsonplaceholder https://jsonplaceholder.typicode.com, e identificar el método a
         utilizar para los datos de usuario.
@@ -21,8 +26,19 @@ import android.os.Bundle
  */
 
 class MainActivity : AppCompatActivity() {
+    private val userVM:UsersVM by viewModels()
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        Timber.plant(Timber.DebugTree())
+        val adapter=UserAdapter()
+        userVM.userList.observe(this, {
+            adapter.updateAdapter(it)
+        })
+
+        binding= ActivityMainBinding.inflate(layoutInflater)
+        binding.rvUsers.adapter=adapter
+        binding.rvUsers.layoutManager= LinearLayoutManager(this)
+        setContentView(binding.root)
     }
 }

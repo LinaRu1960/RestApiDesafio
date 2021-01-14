@@ -6,10 +6,10 @@ plugins {
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "cl.eme.restapidesafio"
+        applicationId "com.i4bchile.desafiorestapi"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
@@ -31,10 +31,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
     buildFeatures {
         viewBinding true
     }
-
 }
 
 dependencies {
@@ -47,12 +47,7 @@ dependencies {
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    //Room
-    implementation 'androidx.room:room-ktx:2.2.6'
-    def room_version = "2.1.0"
-    implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
-// remote
+    // remote
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
